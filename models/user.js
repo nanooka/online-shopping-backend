@@ -9,10 +9,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userToChannel: {
-    type: String,
-    required: true,
-  },
+  // userToChannel: {
+  //   type: String,
+  // required: true,
+  // },
   userDate: {
     type: Date,
     required: true,

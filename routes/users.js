@@ -2,10 +2,18 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 
+let bodyParser = require("body-parser");
+router.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
 // Getting all
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();
+    console.log("userrrrs =>>>>>>>>>>>>> ", users);
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -19,11 +27,13 @@ router.get("/:id", getUser, (req, res) => {
 
 // Creating One
 router.post("/", async (req, res) => {
+  // console.log("postiingg " user);
   const user = new User({
     email: req.body.email,
     password: req.body.password,
-    userToChannel: req.body.userToChannel,
+    // userToChannel: req.body.userToChannel,
   });
+  console.log("postiingg ", req.body);
 
   try {
     const newUser = await user.save();
@@ -41,9 +51,9 @@ router.patch("/:id", getUser, async (req, res) => {
   if (req.body.password != null) {
     res.user.password = req.body.password;
   }
-  if (req.body.userToChannel != null) {
-    res.user.userToChannel = req.body.userToChannel;
-  }
+  // if (req.body.userToChannel != null) {
+  //   res.user.userToChannel = req.body.userToChannel;
+  // }
 
   try {
     const updatedUser = await res.user.save();
