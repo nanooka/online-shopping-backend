@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
+// const saltRounds = 12;
 
 let bodyParser = require("body-parser");
 router.use(
@@ -11,19 +13,43 @@ router.use(
 
 // Creating One http://localhost:3000/auth/signup
 router.post("/signup", async (req, res) => {
-  // console.log("postiingg " user);
-  const user = new User({
-    email: req.body.email,
-    password: req.body.password,
-    // userToChannel: req.body.userToChannel,
-  });
-  console.log("postiingg auth.js", req.body);
-
   try {
-    const newUser = await user.save();
-    res.status(201).json(newUser);
+    const email = req.body.email;
+    const password = req.body.password;
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const dublicateUser = await User.findOne({ email: email });
+    if (dublicateUser === null) {
+      const user = new User({
+        email: email,
+        password: hashedPassword,
+      });
+      const newUser = await user.save();
+      res.status(201).json(newUser);
+    } else {
+      res.status(500).send("user is already registered with this email");
+    }
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).send("can not register");
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+      return res.status(400).send("Cannot find user");
+    }
+
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      res.send("Logged in successfully");
+      console.log(user);
+    } else {
+      res.send("Password is not correct");
+    }
+  } catch (err) {
+    res.status(500).send("Internal Server Error");
   }
 });
 
