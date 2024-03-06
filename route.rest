@@ -1,26 +1,7 @@
-GET http://localhost:3000/users
-
-###
-
-GET http://localhost:3000/users/65de09a20f79623f9663cb37
-
-###
-POST http://localhost:3000/users
+POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
     "email": "rame@gmail.com",
-    "password": "padsadad",
-    "userToChannel": "AAA"
-}
-
-###
-DELETE http://localhost:3000/users/65df58d3e16633ba29ecbc49
-
-###
-PATCH http://localhost:3000/users/65df58d3e16633ba29ecbc49
-Content-Type: application/json
-
-{
-    "password": "12345"
+    "password": "padsadad"
 }
