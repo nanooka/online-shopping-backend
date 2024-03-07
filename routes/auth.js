@@ -11,7 +11,7 @@ router.use(
   })
 );
 
-// Creating One http://localhost:3000/auth/signup
+// Sign up http://localhost:3000/auth/signup
 router.post("/signup", async (req, res) => {
   try {
     const email = req.body.email;
@@ -27,13 +27,14 @@ router.post("/signup", async (req, res) => {
       const newUser = await user.save();
       res.status(201).json(newUser);
     } else {
-      res.status(500).send("user is already registered with this email");
+      res.status(400).send("This email is already registered!");
     }
   } catch (err) {
     res.status(500).send("can not register");
   }
 });
 
+// Log in http://localhost:3000/auth/login
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
