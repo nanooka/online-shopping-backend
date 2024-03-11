@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-// const saltRounds = 12;
+const jwt = require("jsonwebtoken");
 
 let bodyParser = require("body-parser");
 router.use(
@@ -14,43 +14,35 @@ router.use(
 // Sign up http://localhost:3000/auth/signup
 router.post("/signup", async (req, res) => {
   try {
-    const email = req.body.email;
-    const password = req.body.password;
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const dublicateUser = await User.findOne({ email: email });
-    if (dublicateUser === null) {
-      const user = new User({
-        email: email,
-        password: hashedPassword,
-      });
-      const newUser = await user.save();
-      res.status(201).json(newUser);
-    } else {
-      res.status(400).send("This email is already registered!");
-    }
+    const { email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ email, password: hashedPassword });
+    await user.save();
+    res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
-    res.status(500).send("can not register");
+    res.status(500).json({ error: "This email is already registered" });
   }
 });
 
 // Log in http://localhost:3000/auth/login
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).send("Cannot find user");
+      return res.status(401).json({ error: "Cannot find user" });
     }
-
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      res.send("Logged in successfully");
-      console.log(user);
-    } else {
-      res.send("Password is not correct");
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "Password is not correct" });
     }
+    const token = jwt.sign({ userId: user._id }, "your-secret-key", {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ token });
+    console.log(token);
   } catch (err) {
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
