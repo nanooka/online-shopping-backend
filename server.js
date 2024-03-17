@@ -1,3 +1,5 @@
+const usersRouter = require("./routes/auth");
+const favoritesRouter = require("./routes/favorites");
 require("dotenv").config();
 const cors = require("cors");
 
@@ -20,7 +22,8 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 
-const usersRouter = require("./routes/auth");
 app.use("/auth", usersRouter);
+
+app.use("/favorites", favoritesRouter);
 
 app.listen(3000, () => console.log("Server Started"));

@@ -36,9 +36,14 @@ router.post("/login", async (req, res) => {
     if (!passwordMatch) {
       return res.status(401).json({ error: "Password is not correct" });
     }
-    const token = jwt.sign({ userId: user._id }, "your-secret-key", {
+    const token = jwt.sign({ userId: user._id }, process.env.MY_SECRET, {
       expiresIn: "1h",
     });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+    });
+
     res.status(200).json({ token });
     console.log(token);
   } catch (err) {

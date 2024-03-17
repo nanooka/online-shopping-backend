@@ -2,8 +2,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "nanukananuka@gmail.com",
-    "password": "nanuka"
+    "email": "gg@gmail.com",
+    "password": "gg"
 }
 
 ###
@@ -12,6 +12,16 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "nanuka@gmail.com",
-    "password": "nanuka"
+    "email": "gg@gmail.com",
+    "password": "gg"
+}
+
+###
+
+POST http://localhost:3000/favorites/add
+Content-Type: application/json
+
+{
+    "userId": "65e8c3c688019ed9bf2fd615",
+    "productId": "1"
 }
