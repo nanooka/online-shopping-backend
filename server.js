@@ -1,19 +1,23 @@
-const usersRouter = require("./routes/auth");
-const favoritesRouter = require("./routes/favorites");
-require("dotenv").config();
-const cors = require("cors");
-
+const mongoose = require("mongoose");
 const express = require("express");
-const app = express();
-app.use(cors());
+const cors = require("cors");
+const bodyParser = require("body-parser");
+require("dotenv").config();
 
-let bodyParser = require("body-parser");
+const app = express();
+
+const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
+const favoritesRouter = require("./routes/favorites");
+const authToken = require("./routes/authHelper");
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
-const mongoose = require("mongoose");
+
+app.use(cors());
 
 mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
@@ -22,8 +26,12 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 
-app.use("/auth", usersRouter);
+app.use("/users", usersRouter);
 
-app.use("/favorites", favoritesRouter);
+app.use("/auth", authRouter);
+
+// app.use(authToken);
+
+app.use("/favorites", authToken, favoritesRouter);
 
 app.listen(3000, () => console.log("Server Started"));

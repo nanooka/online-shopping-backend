@@ -39,13 +39,15 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.MY_SECRET, {
       expiresIn: "1h",
     });
+    const userID = JSON.parse(atob(token.split(".")[1])).userId;
 
     res.cookie("token", token, {
       httpOnly: true,
     });
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, userID });
     console.log(token);
+    console.log(userID);
   } catch (err) {
     res.status(500).json({ error: "Internal Server Error" });
   }

@@ -2,8 +2,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "gg@gmail.com",
-    "password": "gg"
+    "email": "rostomi1306@gmail.com",
+    "password": "rostomi123"
 }
 
 ###
@@ -12,16 +12,22 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "gg@gmail.com",
-    "password": "gg"
+    "email": "hello@gg.com",
+    "password": "hello"
 }
 
 ###
 
 POST http://localhost:3000/favorites/add
 Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTA5NDAwODYsImV4cCI6MTcxMDk0MzY4Nn0.1QJYN8yB1R9722Mx-BAo5JW8PJzAcfuoNL1SKZHf_nw"
 
 {
-    "userId": "65e8c3c688019ed9bf2fd615",
-    "productId": "1"
+    "userId": "65eb2892b9b0230cbb476c88",
+    "productId": 4
 }
+
+###
+
+GET http://localhost:3000/favorites/getId
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTA5NDM4MzUsImV4cCI6MTcxMDk0NzQzNX0.kJr51VsxQOVPGjXqgk0wq_m3RmRO0GGD11K6VXlK_us"
