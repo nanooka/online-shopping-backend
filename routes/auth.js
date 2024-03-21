@@ -41,9 +41,12 @@ router.post("/login", async (req, res) => {
     });
     const userID = JSON.parse(atob(token.split(".")[1])).userId;
 
-    res.cookie("token", token, {
-      httpOnly: true,
-    });
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    // });
+    // res.cookie("userID", userID, {
+    //   httpOnly: true,
+    // });
 
     res.status(200).json({ token, userID });
     console.log(token);
