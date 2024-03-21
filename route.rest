@@ -20,6 +20,17 @@ Content-Type: application/json
 
 POST http://localhost:3000/favorites/add
 Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTEwMzg5MTUsImV4cCI6MTcxMTA0MjUxNX0.9lMY1MB0v8EANqeNYc9GSotHMJ8vVRf6zcE9JwQVh5o"
+
+{
+    "userId": "65eb2892b9b0230cbb476c88",
+    "productId": 4
+}
+
+###
+
+DELETE http://localhost:3000/favorites/remove
+Content-Type: application/json
 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTA5NDAwODYsImV4cCI6MTcxMDk0MzY4Nn0.1QJYN8yB1R9722Mx-BAo5JW8PJzAcfuoNL1SKZHf_nw"
 
 {
@@ -29,5 +40,36 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVi
 
 ###
 
-GET http://localhost:3000/favorites/getId
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTA5NDM4MzUsImV4cCI6MTcxMDk0NzQzNX0.kJr51VsxQOVPGjXqgk0wq_m3RmRO0GGD11K6VXlK_us"
+POST http://localhost:3000/cart/add
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTEwMzg5MTUsImV4cCI6MTcxMTA0MjUxNX0.9lMY1MB0v8EANqeNYc9GSotHMJ8vVRf6zcE9JwQVh5o"
+
+{
+    "userId": "65eb2892b9b0230cbb476c88",
+    "productId": 4,
+    "quantity": 1
+}
+
+###
+
+DELETE http://localhost:3000/cart/remove
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTA5NDAwODYsImV4cCI6MTcxMDk0MzY4Nn0.1QJYN8yB1R9722Mx-BAo5JW8PJzAcfuoNL1SKZHf_nw"
+
+{
+    "userId": "65eb2892b9b0230cbb476c88",
+    "productId": 4,
+    "quantity": 1
+}
+
+###
+
+PATCH http://localhsot:3000/cart/increaseQuantity
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTA5NDAwODYsImV4cCI6MTcxMDk0MzY4Nn0.1QJYN8yB1R9722Mx-BAo5JW8PJzAcfuoNL1SKZHf_nw"
+
+{
+    "userId": "65eb2892b9b0230cbb476c88",
+    "productId": 4,
+    "quantity": 1
+}

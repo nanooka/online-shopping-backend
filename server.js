@@ -6,10 +6,10 @@ require("dotenv").config();
 
 const app = express();
 
-const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
-const favoritesRouter = require("./routes/favorites");
 const authToken = require("./routes/authHelper");
+const favoritesRouter = require("./routes/favorites");
+const cartRouter = require("./routes/cart");
 
 app.use(
   bodyParser.urlencoded({
@@ -26,12 +26,9 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 
-app.use("/users", usersRouter);
-
 app.use("/auth", authRouter);
-
 // app.use(authToken);
-
 app.use("/favorites", authToken, favoritesRouter);
+app.use("/cart", authToken, cartRouter);
 
 app.listen(3000, () => console.log("Server Started"));
