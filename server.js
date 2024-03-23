@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+// const { connectToDb, getDb } = require("./db");
 
 const app = express();
 
@@ -31,4 +32,61 @@ app.use("/auth", authRouter);
 app.use("/favorites", authToken, favoritesRouter);
 app.use("/cart", authToken, cartRouter);
 
-app.listen(3000, () => console.log("Server Started"));
+// app.listen(3000, () => console.log("Server Started"));
+
+// const app = express();
+
+// let db;
+
+// connectToDb((err) => {
+//   if (!err) {
+//     app.listen(3000, () => {
+//       console.log("app listening on port 3000");
+//     });
+//     // db = getDb();
+//   }
+// });
+
+// app.get("/users", (req, res) => {
+//   let users = [];
+//   db.collection("users")
+//     .find()
+//     .then(() => {
+//       res.status(200).json();
+//     })
+//     .forEach((user) => users.push(user))
+//     .then(() => {
+//       res.status(200).json(users);
+//     })
+//     .catch(() => {
+//       res.status(500).json({ error: "Could not fetch the documents" });
+//     });
+
+//   console.log(users);
+// });
+
+// const authRouter = require("./routes/auth");
+// app.use("/auth", authRouter);
+
+// const User = require("./models/user");
+// app.get("/auth", async (req, res) => {
+//   try {
+//     const users = await User.find();
+//     res.json(users);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
+
+// router.get("/", async (req, res) => {
+//   try {
+//     const users = await User.find();
+//     res.json(users);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+app.listen(3000, () => {
+  console.log("app listening on port 3000");
+});

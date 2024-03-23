@@ -30,25 +30,29 @@ router.delete("/remove", async (req, res) => {
   }
 });
 
-router.patch("/increaseQuantity", async (req, res) => {
-  try {
-    const { userId, productId } = req.body;
-    const updatedItem = await CartItem.findOneAndUpdate(
-      { userId, productId },
-      { $inc: { quantity: 1 } }, // Increment quantity by 1
-      { new: true }
-    );
+// router.patch("/increaseQuantity", async (req, res) => {
+//   try {
+//     const { userId, productId } = req.body;
+//     const updatedItem = await CartItem.findOneAndUpdate(
+//       { userId, productId },
+//       { $inc: { quantity: quantity + 1 } }, // Increment quantity by 1
+//       { new: true }
+//     );
 
-    if (!updatedItem) {
-      return res.status(404).json({ message: "Product not found in cart" });
-    }
+//     if (!updatedItem) {
+//       return res.status(404).json({ message: "Product not found in cart" });
+//     }
 
-    res
-      .status(200)
-      .json({ message: "Product quantity increased successfully" });
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+//     res
+//       .status(200)
+//       .json({ message: "Product quantity increased successfully" });
+//   } catch (error) {
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+// router.patch("/:id", (req, res) => {
+//   const updates = req.body;
+// });
 
 module.exports = router;

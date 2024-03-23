@@ -2,8 +2,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "rostomi1306@gmail.com",
-    "password": "rostomi123"
+    "email": "nanuka@gmail.com",
+    "password": "nanuka"
 }
 
 ###
@@ -20,11 +20,11 @@ Content-Type: application/json
 
 POST http://localhost:3000/favorites/add
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTEwMzg5MTUsImV4cCI6MTcxMTA0MjUxNX0.9lMY1MB0v8EANqeNYc9GSotHMJ8vVRf6zcE9JwQVh5o"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTExMTIwNjcsImV4cCI6MTcxMTExNTY2N30.j3dwZnWCtl7clJJVgVyFb5jfWUuj4fVWQlYOrgNMCuM"
 
 {
     "userId": "65eb2892b9b0230cbb476c88",
-    "productId": 4
+    "productId": 8
 }
 
 ###
@@ -35,18 +35,18 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVi
 
 {
     "userId": "65eb2892b9b0230cbb476c88",
-    "productId": 4
+    "productId": 8
 }
 
 ###
 
 POST http://localhost:3000/cart/add
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTEwMzg5MTUsImV4cCI6MTcxMTA0MjUxNX0.9lMY1MB0v8EANqeNYc9GSotHMJ8vVRf6zcE9JwQVh5o"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWViMjg5MmI5YjAyMzBjYmI0NzZjODgiLCJpYXQiOjE3MTExMTIwNjcsImV4cCI6MTcxMTExNTY2N30.j3dwZnWCtl7clJJVgVyFb5jfWUuj4fVWQlYOrgNMCuM"
 
 {
     "userId": "65eb2892b9b0230cbb476c88",
-    "productId": 4,
+    "productId": 8,
     "quantity": 1
 }
 
@@ -70,6 +70,9 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVi
 
 {
     "userId": "65eb2892b9b0230cbb476c88",
-    "productId": 4,
-    "quantity": 1
+    "productId": 8,
+    "quantity": 3
 }
+
+###
+GET http://localhost:3000/auth
